@@ -15,15 +15,23 @@ public class LRUCache {
         tail.prev = head;
     }
 
-    public void get(String key){
+    public Map<String, Node> getMap() {
+        return map;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String get(String key){
         if(map.containsKey(key)){
             Node node = map.get(key);
             remove(node);
             insert(node);
-            System.out.println("This string exists in Cache : "+node.key);
+            return "This string exists in Cache : "+node.key;
         }
         else
-            System.out.println("This string does not exist in Cache : "+key);
+            return "This string does not exist in Cache : "+key;
     }
 
     public void put(String key){
