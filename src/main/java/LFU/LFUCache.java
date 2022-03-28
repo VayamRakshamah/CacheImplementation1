@@ -19,8 +19,8 @@ public class LFUCache {
     HashMap<Integer,DllList> frequencyMap;
 
     //Field initialization
-    public LFUCache(int CAPACITY) {
-        this.CAPACITY = CAPACITY;
+    public LFUCache() {
+        this.CAPACITY = 100000;
         this.currSize = 0;
         this.minFrequency = 0;
         this.cache = new HashMap<>();
@@ -28,17 +28,40 @@ public class LFUCache {
         this.cacheEvictions=0;
     }
 
+    public HashMap<String, DllNode> getCache() {
+        return cache;
+    }
+
+    public HashMap<Integer, DllList> getFrequencyMap() {
+        return frequencyMap;
+    }
+
+    public int getCAPACITY() {
+        return CAPACITY;
+    }
+
+    public int getCurrSize() {
+        return currSize;
+    }
+
+    public int getMinFrequency() {
+        return minFrequency;
+    }
+
+    public int getCacheEvictions() {
+        return cacheEvictions;
+    }
+
     //get method to check if the key exists in the cache and prints it.
-    public void get(String key){
+    public String get(String key){
         DllNode node  = cache.get(key);
         if(node == null){
-            System.out.println(key+" :Key does not exist");
+            return key+" :Key does not exist";
         }
-        else{
-            //updateNode places the node at the front to make it most frequently used
-            updateNode(node);
-            System.out.println(key+" :Key exists in cache");
-        }
+        //updateNode places the node at the front to make it most frequently used
+        updateNode(node);
+        return key+" :Key exists in cache";
+
     }
 
     public void put(String key){

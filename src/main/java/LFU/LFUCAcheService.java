@@ -4,7 +4,7 @@ import LFU.LFUCache;
 
 public class LFUCAcheService {
     public static void main(String[] args) {
-        LFUCache lfuCache = new LFUCache(2);
+        LFUCache lfuCache = new LFUCache();
         lfuCache.put("a");
         lfuCache.put("b");
         lfuCache.get("a");
