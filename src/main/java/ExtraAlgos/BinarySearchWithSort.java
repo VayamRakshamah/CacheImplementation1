@@ -1,8 +1,24 @@
 package ExtraAlgos;
 
-public class BinarySearch {
+public class BinarySearchWithSort {
 
-    public int IterativeBinarySearch(int[] sortedArr, int key, int low, int high) {
+    int[] sortedArr;
+    int low;
+    int high;
+
+    public BinarySearchWithSort(int[] sortedArr) {
+        this.sortedArr = sortedArr;
+        this.low=0;
+        this.high=sortedArr.length-1;
+        MergeSortImpl merge = new MergeSortImpl();
+        merge.mergeSort(sortedArr,0,sortedArr.length-1);
+    }
+
+    public int IterativeBinarySearch(int key) {
+
+        MergeSortImpl merge = new MergeSortImpl();
+        merge.mergeSort(sortedArr,0,sortedArr.length-1);
+
         int index = Integer.MAX_VALUE;
 
         while (low <= high) {
@@ -28,11 +44,9 @@ public class BinarySearch {
         if (key == sortedArr[middle]) {
             return middle;
         } else if (key < sortedArr[middle]) {
-            return RecursiveBinarySearch(
-                    sortedArr, key, low, middle - 1);
+            return RecursiveBinarySearch(sortedArr, key, low, middle - 1);
         } else {
-            return RecursiveBinarySearch(
-                    sortedArr, key, middle + 1, high);
+            return RecursiveBinarySearch(sortedArr, key, middle + 1, high);
         }
     }
 }
