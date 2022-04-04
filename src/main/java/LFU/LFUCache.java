@@ -1,9 +1,8 @@
 package LFU;
 
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class LFUCache {
-
 
     //Total capacity of the cache
     final int CAPACITY;
@@ -14,25 +13,25 @@ public class LFUCache {
     //Number of evictions done from the cache
     int cacheEvictions;
     //Cache String and associated node in the Doubly Linked List
-    HashMap<String, DllNode> cache;
+    ConcurrentHashMap<String, DllNode> cache;
     // frequency and list having same frequency
-    HashMap<Integer,DllList> frequencyMap;
+    ConcurrentHashMap<Integer,DllList> frequencyMap;
 
     //Field initialization
     public LFUCache() {
         this.CAPACITY = 100000;
         this.currSize = 0;
         this.minFrequency = 0;
-        this.cache = new HashMap<>();
-        this.frequencyMap = new HashMap<>();
+        this.cache = new ConcurrentHashMap<>();
+        this.frequencyMap = new ConcurrentHashMap<>();
         this.cacheEvictions=0;
     }
 
-    public HashMap<String, DllNode> getCache() {
+    public ConcurrentHashMap<String, DllNode> getCache() {
         return cache;
     }
 
-    public HashMap<Integer, DllList> getFrequencyMap() {
+    public ConcurrentHashMap<Integer, DllList> getFrequencyMap() {
         return frequencyMap;
     }
 

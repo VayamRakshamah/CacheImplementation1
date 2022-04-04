@@ -65,17 +65,14 @@ public class LRUGuavaCacheTests {
         LoadingCache<String, String> cache;
         cache = CacheBuilder.newBuilder()
                 .maximumSize(100000)
-                .expireAfterAccess(5, TimeUnit.SECONDS)
+                .expireAfterAccess(15, TimeUnit.SECONDS)
                 .build(loader);
 
         cache.getUnchecked("hello");
-        assertEquals(1, cache.size());
-
         cache.getUnchecked("hello");
-        Thread.sleep(6000);
-
+        Thread.sleep(10000);
         cache.getUnchecked("test");
-        assertEquals(1, cache.size());
+        cache.getUnchecked("java");
         assertNull(cache.getIfPresent("hello"));
     }
 
